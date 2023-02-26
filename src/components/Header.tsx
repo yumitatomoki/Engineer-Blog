@@ -75,7 +75,11 @@ const DrawerMenu = () => {
   )
 }
 
-const Header : FC<{}> = ({ children }) => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+const Header : FC<Props> = ({ children }) => {
   return (
     <Container maxW="1200px">
       <Stack>
