@@ -1,5 +1,5 @@
-import React, { FC } from "react"
-import { HamburgerIcon } from "@chakra-ui/icons"
+import React, { FC } from "react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -11,34 +11,49 @@ import {
   DrawerOverlay,
   Heading,
   HStack,
-  Link,
-  LinkProps,
   Stack,
   useDisclosure,
-  Container
-} from "@chakra-ui/react"
+  Container,
+} from "@chakra-ui/react";
 import useMedia from "use-media";
+import Link from 'next/link';
+import styled from "styled-components";
 
-const HoverLink = (props: LinkProps) => <Link rounded="base" _hover={{bg:"gray.200"}} p={2} {...props } />
+const StyledLink = styled.p`
+  :hover {
+    opacity:0.7;
+  }
+  `;
+
 
 const Navigation = () => {
   const isWide = useMedia({ minWidth: "767px" });
   return (
     <>
       {isWide ? 
-      <HStack as="nav">
-        <HoverLink>About</HoverLink>
-        <HoverLink>Works</HoverLink>
-        <HoverLink>Blog</HoverLink>
-        <HoverLink>Contact</HoverLink>
-      </HStack>
-      : 
-      <Stack as="nav">
-        <HoverLink>About</HoverLink>
-        <HoverLink>Works</HoverLink>
-        <HoverLink>Blog</HoverLink>
-        <HoverLink>Contact</HoverLink>
-      </Stack>
+        <HStack p={3} spacing={6}>
+          <StyledLink>
+            <Link href="/">Home</Link>
+          </StyledLink>
+          <StyledLink>
+            <Link href="/about">About</Link>
+          </StyledLink>
+          <StyledLink>
+          <Link href="/blog/">Blog</Link>
+          </StyledLink>
+        </HStack>
+        :
+        <Stack>
+          <StyledLink>
+            <Link href="/">Home</Link>
+          </StyledLink>
+          <StyledLink>
+            <Link href="/about">About</Link>
+          </StyledLink>
+          <StyledLink>
+            <Link href="/blog/">Blog</Link>
+          </StyledLink>
+        </Stack>
       }
     </>
   )
@@ -47,7 +62,6 @@ const Navigation = () => {
 const DrawerMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef<HTMLButtonElement>(null)
-
   return (
     <>
       <Button ref={btnRef} onClick={onOpen}>
@@ -84,8 +98,10 @@ const Header : FC<Props> = ({ children }) => {
     <Container maxW="1200px">
       <Stack>
         <HStack p={5} alignItems="start" justifyContent="space-between" >
-          <Heading>Tomoki Yumita</Heading>
-            <HStack alignItems="start" >
+          <Heading>
+            <Link href="/">Tomoki Yumita</Link>
+          </Heading>
+          <HStack alignItems="start" >
             <Box display={{ base: "none", md: "block" }} >
               <Navigation />
             </Box>
