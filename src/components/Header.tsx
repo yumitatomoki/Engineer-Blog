@@ -14,46 +14,44 @@ import {
   Stack,
   useDisclosure,
   Container,
+  ListItem,
+  UnorderedList
 } from "@chakra-ui/react";
 import useMedia from "use-media";
 import Link from 'next/link';
-import styled from "styled-components";
-
-const StyledLink = styled.p`
-  :hover {
-    opacity:0.7;
-  }
-  `;
-
 
 const Navigation = () => {
   const isWide = useMedia({ minWidth: "767px" });
   return (
     <>
       {isWide ? 
-        <HStack p={3} spacing={6}>
-          <StyledLink>
-            <Link href="/">Home</Link>
-          </StyledLink>
-          <StyledLink>
-            <Link href="/about">About</Link>
-          </StyledLink>
-          <StyledLink>
-          <Link href="/blog/">Blog</Link>
-          </StyledLink>
-        </HStack>
+        <UnorderedList listStyleType="none" m={0}>
+          <HStack p={3} spacing={6}>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/">Home</Link>
+            </ListItem>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/about">About</Link>
+            </ListItem>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/blog/">Blog</Link>
+            </ListItem>
+          </HStack>
+        </UnorderedList>
         :
-        <Stack>
-          <StyledLink>
-            <Link href="/">Home</Link>
-          </StyledLink>
-          <StyledLink>
-            <Link href="/about">About</Link>
-          </StyledLink>
-          <StyledLink>
-            <Link href="/blog/">Blog</Link>
-          </StyledLink>
-        </Stack>
+        <UnorderedList listStyleType="none" m={0}>
+          <Stack>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/">Home</Link>
+            </ListItem>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/about">About</Link>
+            </ListItem>
+            <ListItem _hover={{ opacity: 0.7 }}>
+              <Link href="/blog/">Blog</Link>
+            </ListItem>
+          </Stack>
+        </UnorderedList>
       }
     </>
   )
