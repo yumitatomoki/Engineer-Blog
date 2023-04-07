@@ -4,20 +4,15 @@ import { Box,Container, Flex, Heading, Image, Text,Center,} from '@chakra-ui/rea
 import { EntryCollection } from 'contentful';
 import React, { useEffect,useState } from 'react'
 import {client} from '../../utils/contentfulClient'
-import styles from "./index.module.css";
-
-
-type MyPost = {
-  title:string
-}
+import { IMyPostsFields } from '../../../@types/generated/contentful'
 
 export default function page() {
 
-  const [items,setItems] = useState<EntryCollection<MyPost>['items']>([]);
+  const [items,setItems] = useState<EntryCollection<IMyPostsFields>['items']>([]);
 
   useEffect(() => {
     (async () => {
-      const res = await client.getEntries<MyPost>({
+      const res = await client.getEntries<IMyPostsFields>({
         content_type: 'myPosts'
       })
       setItems(res.items)
