@@ -6,6 +6,7 @@ import React, { useEffect,useState } from 'react'
 import {client} from '../../utils/contentfulClient'
 import { IMyPostsFields } from '../../../@types/generated/contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import {options} from '../../../lib/richTextOption';
 
 
 export default function page() {
@@ -40,7 +41,7 @@ export default function page() {
               <Image mx='auto' src='/cat.jpg' alt='Cat' mr='auto'/>
             </Box>
             <Box flexBasis='50%'>
-              <Text mt={20} >{documentToReactComponents(myPost.fields.content)}</Text>
+              <Text mt={20} >{documentToReactComponents(myPost.fields.content,options)}</Text>
             </Box>
           </Flex>
         </Container>
