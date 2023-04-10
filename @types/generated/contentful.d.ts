@@ -11,7 +11,7 @@ export interface IMyPostsFields {
   content: Document;
 
   /** image */
-  image: Asset;
+  image: Asset= { image: 'example'};
 
   /** slug */
   slug: string;
