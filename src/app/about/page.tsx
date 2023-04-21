@@ -9,7 +9,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import {options} from '../../../lib/richTextOption';
 
 
-export default function page() {
+export default function Page() {
 
   const [items,setItems] = useState<EntryCollection<IMyPostsFields>['items']>([]);
 
