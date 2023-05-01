@@ -1,15 +1,13 @@
-'use client'
-
 import { Box,Container, Flex, Heading, Image, Text,Center,} from '@chakra-ui/react'
 import { EntryCollection } from 'contentful';
 import React, { useEffect,useState } from 'react'
-import {client} from '../../utils/contentfulClient'
-import { IMyPostsFields } from '../../../@types/generated/contentful'
+import {client} from '../utils/contentfulClient'
+import { IMyPostsFields } from '../../@types/generated/contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import {options} from '../../../lib/richTextOption';
+import {options} from '../../lib/richTextOption';
 
 
-export default function Page() {
+const About = () => {
 
   const [items,setItems] = useState<EntryCollection<IMyPostsFields>['items']>([]);
 
@@ -49,3 +47,5 @@ export default function Page() {
     </>
   )
 } 
+
+export default About;
