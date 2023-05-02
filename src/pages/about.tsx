@@ -1,13 +1,16 @@
 import { Box,Container, Flex, Heading, Image, Text,Center,} from '@chakra-ui/react'
 import { EntryCollection } from 'contentful';
-import React, { useEffect,useState } from 'react'
 import {client} from '../utils/contentfulClient'
 import { IMyPostsFields } from '../../@types/generated/contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {options} from '../../lib/richTextOption';
-import { GetServerSideProps } from "next";
+import { GetServerSideProps,NextPage } from "next";
 
-const About = ({ myPosts }:{ myPosts: EntryCollection<IMyPostsFields>['items']}) => {
+type AboutProps = {
+  myPosts: EntryCollection<IMyPostsFields>['items']
+}
+
+const About: NextPage<AboutProps> = ({ myPosts }) => {
 
   const myPost = myPosts[0].fields;
 
@@ -38,7 +41,7 @@ const About = ({ myPosts }:{ myPosts: EntryCollection<IMyPostsFields>['items']})
 
 export default About;
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<AboutProps> = async () => {
 
   const res = await client.getEntries<IMyPostsFields>({
     content_type: 'myPosts'
