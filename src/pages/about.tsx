@@ -1,28 +1,24 @@
-'use client'
-
 import { Box,Container, Flex, Heading, Image, Text,Center,} from '@chakra-ui/react'
 import { EntryCollection } from 'contentful';
 import React, { useEffect,useState } from 'react'
-import {client} from '../../utils/contentfulClient'
-import styles from "./index.module.css";
+import {client} from '../utils/contentfulClient'
+import { IMyPostsFields } from '../../@types/generated/contentful'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import {options} from '../../lib/richTextOption';
 
 
-type MyPost = {
-  title:string
-}
+const About = () => {
 
-export default function page() {
+  const [items,setItems] = useState<EntryCollection<IMyPostsFields>['items']>([]);
 
-  const [items,setItems] = useState<EntryCollection<MyPost>['items']>([]);
 
   useEffect(() => {
     (async () => {
-      const res = await client.getEntries<MyPost>({
+      const res = await client.getEntries<IMyPostsFields>({
         content_type: 'myPosts'
       })
       setItems(res.items)
     })()
-
   }, [])
 
   const myPost = items[0]
@@ -43,7 +39,7 @@ export default function page() {
               <Image mx='auto' src='/cat.jpg' alt='Cat' mr='auto'/>
             </Box>
             <Box flexBasis='50%'>
-              <Text mt={20} >神奈川県出身のエンジニア。23歳の時にIT業界に転職し、常に新しい言語やフレームワークに興味を持ち、最新の技術について学ぶことに情熱を注いでいます。今後もさらにスキルを向上させ、ビジネス価値を提供できるエンジニアとして成長していきたいと思っています！</Text>
+              <Text mt={20} >{documentToReactComponents(myPost.fields.content,options)}</Text>
             </Box>
           </Flex>
         </Container>
@@ -51,3 +47,5 @@ export default function page() {
     </>
   )
 } 
+
+export default About;
