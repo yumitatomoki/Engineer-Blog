@@ -15,18 +15,16 @@ import {
   useDisclosure,
   Container,
   ListItem,
-  UnorderedList
+  UnorderedList,
+  VStack
 } from "@chakra-ui/react";
-import useMedia from "use-media";
 import Link from 'next/link';
 
 const Navigation = () => {
-  const isWide = useMedia({ minWidth: "767px" });
   return (
     <>
-      {isWide ? 
         <UnorderedList listStyleType="none" m={0}>
-          <HStack p={3} spacing={6}>
+          <HStack p={3} spacing={6} display={{ md: 'flex', sm: 'none' }}>
             <ListItem _hover={{ opacity: 0.7 }}>
               <Link href="/">Home</Link>
             </ListItem>
@@ -37,10 +35,7 @@ const Navigation = () => {
               <Link href="/blog/">Blog</Link>
             </ListItem>
           </HStack>
-        </UnorderedList>
-        :
-        <UnorderedList listStyleType="none" m={0}>
-          <Stack>
+          <VStack display={{ md: 'none', sm: 'block' }}>
             <ListItem _hover={{ opacity: 0.7 }}>
               <Link href="/">Home</Link>
             </ListItem>
@@ -50,9 +45,8 @@ const Navigation = () => {
             <ListItem _hover={{ opacity: 0.7 }}>
               <Link href="/blog/">Blog</Link>
             </ListItem>
-          </Stack>
+          </VStack>
         </UnorderedList>
-      }
     </>
   )
 }
