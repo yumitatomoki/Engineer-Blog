@@ -1,4 +1,4 @@
-import { Box,Container, Flex, Heading, Image, Text,Center,} from '@chakra-ui/react'
+import { Box,Container, Flex, Heading, Image,Center,} from '@chakra-ui/react'
 import { EntryCollection } from 'contentful';
 import {client} from '../utils/contentfulClient'
 import { IMyPostsFields } from '../../@types/generated/contentful'
@@ -27,7 +27,7 @@ const About: NextPage<AboutProps> = ({ myPosts }) => {
           </Center>
           <Flex my='50px' px={{ lg: '50px', base: '20px' }} gap='30px' display={{ lg: 'flex', base: 'grid' }}>
             <Box flexBasis='50%'>
-              <Image mx='auto' src='/cat.jpg' alt='Cat' mr='auto'/>
+              <Image mx='auto' src={myPost.image.fields.file.url} alt={myPost.image.fields.title} mr='auto'/>
             </Box>
             <Box flexBasis='50%'>
               <Box mt={20}>{documentToReactComponents(myPost.content,options)}</Box>
