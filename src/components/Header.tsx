@@ -24,7 +24,7 @@ const Navigation = () => {
   return (
     <>
         <UnorderedList listStyleType="none" m={0}>
-          <HStack p={3} spacing={6} display={{ md: 'flex', sm: 'none' }}>
+          <HStack p={3} spacing={6} display={{ base:'none', md: 'flex', sm: 'none' }}>
             <ListItem _hover={{ opacity: 0.7 }}>
               <Link href="/">Home</Link>
             </ListItem>
@@ -35,7 +35,7 @@ const Navigation = () => {
               <Link href="/blog/">Blog</Link>
             </ListItem>
           </HStack>
-          <VStack display={{ md: 'none', sm: 'block' }}>
+          <VStack display={{ base:'block', md: 'none', sm: 'block' }}>
             <ListItem _hover={{ opacity: 0.7 }}>
               <Link href="/">Home</Link>
             </ListItem>
