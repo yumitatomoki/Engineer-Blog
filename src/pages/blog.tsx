@@ -1,4 +1,4 @@
-import { Box,Container,Heading,Text,Image, Card, CardBody, Stack, SimpleGrid, Center } from '@chakra-ui/react'
+import { Box,Container,Heading,Text,Image, Card, CardBody, Stack, SimpleGrid, VStack } from '@chakra-ui/react'
 import { EntryCollection } from 'contentful';
 import {client} from '../utils/contentfulClient'
 import { IMyPostsFields } from '../../@types/generated/contentful'
@@ -34,17 +34,17 @@ const BLOG: NextPage<BLOGProps> = ({ blogPosts }) => {
           <SimpleGrid columns={1} spacing={5} >
             {blogPosts && blogPosts.map((post) => (
               <Link href={`posts/${post.fields.slug}`} key={post.sys.id}>
-                <Center h='100%'>
-                <Card maxW='sm' _hover={{ opacity: 0.7}} transition='0.5s'>
-                  <CardBody>
-                    <Image src={post.fields.image.fields.file.url} alt='Green double couch with wooden legs' borderRadius='lg'/>
-                  <Stack mt='6' spacing='3'>
-                    <Heading size='md'>{post.fields.title}</Heading>
-                  </Stack>
-                  <Text textAlign='right'>{post.sys.createdAt.substring(0, 10)}</Text>
-                  </CardBody>
-                </Card>
-                </Center>
+                <VStack>
+                  <Card maxW='sm' _hover={{ opacity: 0.7}} transition='0.5s'>
+                    <CardBody>
+                      <Image src={post.fields.image.fields.file.url} alt={post.fields.image.fields.title} borderRadius='lg' />
+                    <Stack mt='6' spacing='3'>
+                      <Heading size='md'>{post.fields.title}</Heading>
+                    </Stack>
+                    <Text textAlign='right'>{post.sys.createdAt.substring(0, 10)}</Text>
+                    </CardBody>
+                  </Card>
+                </VStack>
               </Link>
             ))}
           </SimpleGrid>
