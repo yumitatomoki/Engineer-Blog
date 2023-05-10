@@ -1,6 +1,6 @@
-import Header from './Header';
-import Footer from './Footer';
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from '@chakra-ui/react'
+import Footer from './Footer'
+import Header from './Header'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -14,4 +14,4 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   )
 }
 
-export default Layout;
+export default Layout
